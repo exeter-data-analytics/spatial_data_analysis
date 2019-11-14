@@ -1,0 +1,4 @@
+rmd_files:
+    html: ['index.Rmd', 'ch_vector_helloworld.Rmd', 'ch_vector_oceanographers.Rmd']
+    latex: ['index.Rmd', 'ch_vector_helloworld.Rmd', 'ch_vector_oceanographers.Rmd', 'ch_appendix.Rmd']
+output_dir: "docs"

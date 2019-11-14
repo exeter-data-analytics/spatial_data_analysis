@@ -1,0 +1,216 @@
+# Hello, world!
+
+
+## Importing vector data
+
+
+### Spatial data formats
+
+The [Geospatial Data Abstraction Library](https://gdal.org/) is a translator library for raster and vector geospatial data formats. We will start by loading the R package of this library and check all the vector data formats that can be imported into R
+
+```{r message = FALSE, warning = FALSE}
+library(rgdal)
+vector_formats <- ogrDrivers()
+head(vector_formats)
+```
+
+You can explore `vector_formats`. How many different formats are available? Are you familiar with any of them?
+
+
+
+###  Import shapefiles
+
+[shapefile](https://en.wikipedia.org/wiki/Shapefile) is a popular format used in GIS.
+We will import a polygon layer of the world countries extracted from [Natural Earth](https://www.naturalearthdata.com/).
+
+```{r}
+# Import countries
+countries <- readOGR(dsn = "data/ne/ne_110m_admin_0_countries", layer = "ne_110m_admin_0_countries")
+```
+
+We can check the class and spatial attributes of this layer
+
+```{r}
+# View spatial attributes
+class(countries)  # sp class
+```
+
+And now, let's make our first plot using base R graphics
+
+```{r}
+# Quick plot
+plot(countries, main = "World countries")
+```
+
+
+
+
+## Coordinate Reference Systems (CRS)
+
+You can check the CRS from your spatial object
+
+```{r}
+# View spatial attributes
+proj4string(countries)  # displays the coordinate reference system (CRS)
+```
+
+
+And then transform to another CRS. In this case, we transform to the [Mollweide projection](https://en.wikipedia.org/wiki/Mollweide_projection). This is an accurate single global projection that preserves geographic area. You can see an example of application in [March et al. 2019](https://doi.org/10.1111/gcb.14902)
+
+```{r}
+# Change to Mollweide projection
+countries_moll <- spTransform(countries, CRS("+proj=moll +ellps=WGS84"))
+
+# Quick plot
+plot(countries_moll, col = "grey80", main = "World countries")
+```
+
+
+
+## Geographic subset
+
+
+### Geographic subset by setting a bounding box
+
+First, create a bounding area for subsetting the data
+
+```{r message = FALSE, warning = FALSE}
+# Import raster package
+library(raster)
+
+# Set min and maximum coordinates (lon/lat)
+xmin <- -15
+xmax <- 46
+ymin <- 28
+ymax <- 60
+
+# Create an extent object
+e <- extent(xmin, xmax, ymin, ymax)
+class(e)
+```
+
+Then, you can use the `extent` object to subset the worl map using `crop()` function
+
+
+```{r message = FALSE, warning = FALSE}
+# Geographic subset of countries by the extent defined
+countries_subset <- crop(countries, e)
+plot(countries_subset)
+```
+
+
+#### Exercise:
+* Make a plot of South America
+* Tip: you can Use QGIS or Google Earth to search for coordinates
+
+
+### Geographic subset by data attributes
+
+The spatial layer of polygons has a linked attribute table, with specific information for each country. You can explore convert the `@data` object from `countries` into a `data.frame` and then explore the attribute data.
+
+
+```{r}
+# Convert attribute data into a data.frame
+df <- data.frame(countries@data)
+# head(df)
+```
+
+
+List of continents
+
+```{r}
+unique(countries$CONTINENT)
+```
+
+
+Subset countries from South America
+
+```{r}
+# Subset South America
+south_america <- countries[countries$CONTINENT == "South America",]
+plot(south_america, col = "lightgreen", border = "darkgreen", lwd=3, main = "South America")
+extent(south_america)  # You can also get your extent
+```
+
+
+## Import vector layer: point data
+
+We will import layer "Populated places of the world" from Natural Earth
+
+```{r}
+# Import populated places
+places <- readOGR(dsn = "data/ne/ne_110m_populated_places_simple", layer = "ne_110m_populated_places_simple")
+
+# View spatial attributes
+class(places)
+extent(places)
+crs(places)
+
+# Quick plot
+plot(places, main = "Populated places")  
+```
+
+The plot is not very informative. Let's combine with the world map
+
+
+```{r}
+# Plot together with country maps
+plot(countries, col = "grey80", border = "grey80")
+plot(places, pch = 20, col = "darkblue", add = TRUE)
+```
+
+
+
+## Spatial overlap
+
+The overlap between spatial layer in order to extract information from one to another is one of the most common tasks in GIS.
+
+Here, we want to plot the populated places from Europe. However, there is no information about the continent in the places layer. We will use a spatial overlay to extract information from the countries layer using the function `over()`
+
+```{r}
+# Spatial overlay
+ov <- over(places, countries)
+class(ov)
+```
+
+We then can append the continent information into the point layer
+
+```{r}
+places$CONTINENT <- ov$CONTINENT
+# head(places)
+```
+
+
+Note that there are places with `NA` in the continent attribute. This is due to a spatial missmatch between layers in terms of resolution, more specifically because of the coarse resolution of the countries layer. There would be several alternatives: 1) use a high-res countries map, 2) calculate the nearest polygon.
+
+```{r}
+# Subset places and countries from Africa
+places_africa <- places[which(places$CONTINENT == "Africa"),]
+
+# Plot together with country maps
+plot(countries, col = "grey80", border = "grey80")
+plot(places_africa, pch = 20, col = "darkblue", add = TRUE)
+```
+
+
+
+## Interactive maps
+
+Spatial datasets oftern require to conduct an interative visualization of the data. In R, we can use the `leaflet` library to generate a dynamic viewer.
+
+```{r message = FALSE, warning = FALSE}
+# import leaflet package
+library(leaflet)
+
+# create leaftet map
+map <- leaflet(data = places) %>%
+  addProviderTiles("Esri.OceanBasemap") %>%  # Base map
+  addMarkers(popup = ~name)
+
+# plot leaflet map
+map
+```
+
+
+You can customize your map using different basemaps, add more spatial layers and much more. You can check the [official package website](https://rstudio.github.io/leaflet/) for many examples
+
