@@ -1,0 +1,33 @@
+--- 
+title: "Working with vector data"
+author: "D March"
+site: bookdown::bookdown_site
+output:
+    bookdown::gitbook:
+        config:
+            sharing: null
+        css: 'style.css'
+        includes:
+            in_header: _toggle.html
+        keep_md: TRUE
+linkcolor: blue
+documentclass: book
+link-citations: yes
+description: "Skeleton Tutorial Template"
+---
+
+
+# Working with vector data in R
+
+
+In this module of the workshop we are going to work with vector data (points, lines and polygons). R has an extraordinary potential to handle this data and perform complex spatial operations like other Geographic Information Systems (GIS) software.
+
+Here you will find a link to:
+* Data. Download the zip file and store it into a `data/` folder from your Rstudio project.
+* Slides.
+
+We will explore the capacities of R to handle and manipulate vector data through two worked examples:
+
+1. Hello, world!
+
+2. Animal oceanographers
