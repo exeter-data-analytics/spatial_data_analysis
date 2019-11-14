@@ -31,3 +31,36 @@ We will explore the capacities of R to handle and manipulate vector data through
 1. Hello, world!
 
 2. Animal oceanographers
+
+
+## Set up your working environment
+
+1. Create a new project from Rstudio
+
+2. Download the [Data]("data.zip")
+
+3. Uncompress and store in `data/` folder from your new project
+
+4. Run the following code to install all required packages
+
+```{r message = FALSE, warning = FALSE}
+install.packages(c("rgdal",
+                 "raster",
+                 "viridis",
+                 "leaflet",
+                 "ggplot2",
+                 "mapproj",
+                 "robis",
+                 "elevatr",
+                 "move",
+                 "moveVis",
+                 "dplyr",
+                 "lubridate",
+                 "rgeos",
+                 "adehabitatHR",
+                 "RColorBrewer",
+                 "rasterVis",
+                 "rgl"))
+```
+
+5. Once your working environment is set up, you can copy/paste the lines of code from this website into a new R Script.
