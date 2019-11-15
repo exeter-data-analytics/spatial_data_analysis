@@ -44,3 +44,6 @@ README.html
 # docs and bookdown files
 /docs
 /_bookdown_files
+
+# git commands
+git_commands.txt

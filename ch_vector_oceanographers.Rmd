@@ -179,7 +179,7 @@ m <- align_move(mdata, res = 1, digit = 0, unit = "days", spaceMethod = "greatci
 
 Next step is to create individuals frames for each time step
 
-```{r}
+```{r message = FALSE}
 # create spatial frames with a OpenStreetMap watercolour map
 frames <- frames_spatial(m,  # move object
                          map_service = "carto", map_type = "voyager_no_labels",  # base map
@@ -200,9 +200,9 @@ frames[[100]] # preview one of the frames, e.g. the 100th frame
 
 Finally, we can generate an animation by combining all individual frames. This function takes a while...
 
-```{r}
+```{r eval = FALSE}
 # animate frames
-# animate_frames(frames, out_file = "img/animation.gif", overwrite = TRUE, display = FALSE)
+animate_frames(frames, out_file = "img/animation.gif", overwrite = TRUE, display = FALSE)
 ```
 
 ![Animation in lonlat](img/animation.gif)
@@ -237,8 +237,8 @@ plotRGB(bmap_pol, addfun = lines(mpol))
 
 Prepare individual frames for animation. Note this time there are several differences in the code
 
-```{r}
-# create spatial frames with a OpenStreetMap watercolour map
+```{r message = FALSE}
+# create spatial frames with a custom basemap
 frames <- frames_spatial(mpol,
           r_list = bmap_pol, r_times = m$time[1], ext = extent(bmap_pol),  #custom base map
           path_size = 2, path_colours = c("orange"), alpha = 0.5) %>% 
@@ -251,7 +251,7 @@ frames[[100]] # preview one of the frames, e.g. the 100th frame
 
 This time, we will remove the axis labels
 
-```{r}
+```{r message = FALSE}
 # remove axis
 frames <- add_gg(frames, gg = expr(theme(axis.ticks = element_blank(),
                                          axis.title = element_blank(),
@@ -263,9 +263,9 @@ frames[[100]] # preview one of the frames, e.g. the 100th frame
 
 Finally, we can generate an animation by combining all individual frames. This function takes a while...
 
-```{r}
+```{r eval = FALSE}
 # animate frames
-# animate_frames(frames, out_file = "img/animation_polar.gif", overwrite = TRUE, display = FALSE)
+animate_frames(frames, out_file = "img/animation_polar.gif", overwrite = TRUE)
 ```
 ![Animation in polar projection](img/animation_polar.gif)
 
@@ -279,13 +279,13 @@ Several public online databases offer the posibility to extract their informatio
 
 Here, we show the use of one client for the Ocean Biogeographic Information System that allow us to extract species occurrence records.
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, eval = FALSE}
 
 # load library
 library(robis)
 
 # import data
-# records <- occurrence("Physeter macrocephalus")  # Scientific name of the sperm whale. You can replace it with your favourite one!
+records <- occurrence("Physeter macrocephalus")  # Scientific name of the sperm whale. You can replace it with your favourite one!
 ```
 
 
