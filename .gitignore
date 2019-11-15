@@ -40,3 +40,7 @@ rsconnect/
 
 # Readme html
 README.html
+
+# docs and bookdown files
+/docs
+/_bookdown_files
