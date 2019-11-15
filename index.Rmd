@@ -40,7 +40,7 @@ We will explore the capacities of R to handle and manipulate vector data through
 
 1. Create a new project from Rstudio
 
-2. Download the [Data]("data.zip")
+2. Download the [Data](https://exeter-data-analytics.github.io/spatial_data_analysis/data.zip)
 
 3. Uncompress and store in `data/` folder from your new project
 
