@@ -17,6 +17,9 @@ description: "Skeleton Tutorial Template"
 ---
 
 
+```{r, child = "_setup.Rmd", include = F, purl = F, cache = F}
+```
+
 # Working with vector data in R
 
 
@@ -43,7 +46,7 @@ We will explore the capacities of R to handle and manipulate vector data through
 
 4. Run the following code to install all required packages
 
-```{r message = FALSE, warning = FALSE}
+```{r message = FALSE, warning = FALSE, eval = FALSE}
 install.packages(c("rgdal",
                  "raster",
                  "viridis",
