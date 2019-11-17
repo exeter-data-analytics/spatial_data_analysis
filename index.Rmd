@@ -1,6 +1,6 @@
 --- 
-title: "Working with vector data"
-author: "D March"
+title: "Working with vector data in R"
+author: "D March & J Duffy"
 site: bookdown::bookdown_site
 output:
     bookdown::gitbook:
@@ -16,18 +16,12 @@ link-citations: yes
 description: "Skeleton Tutorial Template"
 ---
 
-
 ```{r, child = "_setup.Rmd", include = F, purl = F, cache = F}
 ```
 
-# Working with vector data in R
-
+# Introduction
 
 In this module of the workshop we are going to work with vector data (points, lines and polygons). R has an extraordinary potential to handle this data and perform complex spatial operations like other Geographic Information Systems (GIS) software.
-
-Here you will find a link to:
-* Data. Download the zip file and store it into a `data/` folder from your Rstudio project.
-* Slides.
 
 We will explore the capacities of R to handle and manipulate vector data through two worked examples:
 
@@ -38,13 +32,13 @@ We will explore the capacities of R to handle and manipulate vector data through
 
 ## Set up your working environment
 
-1. Create a new project from Rstudio
+1. Create a new project within Rstudio. If you are unsure, instructions on how to do this can be found [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
 
-2. Download the [Data](https://exeter-data-analytics.github.io/spatial_data_analysis/data.zip)
+2. Download the [Data](https://exeter-data-analytics.github.io/spatial_data_analysis/data.zip).
 
-3. Uncompress and store in `data/` folder from your new project
+3. Unzip and store its contents in a folder named `data/` within your new project.
 
-4. Run the following code to install all required packages
+4. Run the following code to install all required packages:
 
 ```{r message = FALSE, warning = FALSE, eval = FALSE}
 install.packages(c("rgdal",
@@ -54,6 +48,7 @@ install.packages(c("rgdal",
                  "ggplot2",
                  "mapproj",
                  "robis",
+                 "gifski",
                  "elevatr",
                  "move",
                  "moveVis",
