@@ -114,12 +114,12 @@ writeOGR(track, dsn = "data/meop", layer = "track_points", driver = "ESRI Shapef
 writeOGR(hull, dsn = "data/meop", layer = "track_hull", driver = "ESRI Shapefile", overwrite_layer = TRUE)
 
 # export to geopackage
-writeOGR(track, dsn = "data/meop", layer = "track_points", driver = "GPKG", overwrite_layer = TRUE)
-writeOGR(hull, dsn = "data/meop", layer = "track_hull", driver = "GPKG", overwrite_layer = TRUE)
+writeOGR(track, dsn = "data/meop/track_points.gpkg", layer = "track_points", driver = "GPKG", overwrite_layer = TRUE)
+writeOGR(hull, dsn = "data/meop/track_hull.gpkg", layer = "track_hull", driver = "GPKG", overwrite_layer = TRUE)
 
 # export to KML
 writeOGR(track, dsn = "data/meop/track_points.kml", layer = "track", driver = "KML", overwrite_layer = TRUE)
-writeOGR(hull, dsn = "data/meop/track_hull.kml", layer = "hull", driver = "ESRI Shapefile", overwrite_layer = TRUE)
+writeOGR(hull, dsn = "data/meop/track_hull.kml", layer = "hull", driver = "KML", overwrite_layer = TRUE)
 ```
 
 ## Animated plots for movement data
