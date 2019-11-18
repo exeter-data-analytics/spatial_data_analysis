@@ -1,6 +1,6 @@
 --- 
-title: "Working with vector data in R"
-author: "D March & J Duffy"
+title: "Introduction to Spatial Analysis in R"
+author: "D March, J Duffy & Chris Yeomans"
 site: bookdown::bookdown_site
 output:
     bookdown::gitbook:
@@ -21,13 +21,19 @@ description: "Skeleton Tutorial Template"
 
 # Introduction
 
-In this module of the workshop we are going to work with vector data (points, lines and polygons). R has an extraordinary potential to handle this data and perform complex spatial operations like other Geographic Information Systems (GIS) software.
+In this workshop we are going to work with vector data (points, lines and polygons) and raster data. R has an extraordinary potential to handle this data and perform complex spatial operations like other Geographic Information Systems (GIS) software.
 
 We will explore the capacities of R to handle and manipulate vector data through two worked examples:
 
 1. Hello, world!
 
 2. Animal oceanographers
+
+We will also play with raster data with a further two examples: 
+
+1. Introduction to raster data
+
+2. Working with real world data
 
 
 ## Set up your working environment
@@ -36,9 +42,16 @@ We will explore the capacities of R to handle and manipulate vector data through
 
 2. Download the [Data](https://exeter-data-analytics.github.io/spatial_data_analysis/data.zip).
 
-3. Unzip and store its contents in a folder named `data/` within your new project.
+3. Unzip and store its contents in a folder named `data` within your new project.
 
-4. Run the following code to install all required packages:
+4. Now create the following folders within your project - `output` & `img`. This can be done from within R as follows:
+
+```{r create_folders}
+dir.create("output")
+dir.create("img")
+```
+
+5. Run the following code to install all required packages:
 
 ```{r message = FALSE, warning = FALSE, eval = FALSE}
 install.packages(c("rgdal",
@@ -61,4 +74,4 @@ install.packages(c("rgdal",
                  "rgl"))
 ```
 
-5. Once your working environment is set up, you can copy/paste the lines of code from this website into a new R Script.
+5. Once your working environment is set up, you can copy/paste the lines of code from this website into R script(s) to run.
