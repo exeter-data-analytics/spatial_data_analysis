@@ -17,9 +17,9 @@ head(vector_formats)
 
 Here, `vector_formats` is a data frame containing names and information of various formats supported by GDAL. You can explore `vector_formats`. How many different formats are available? Are you familiar with any of them?
 
-###  Import shapefiles
+### Import vector data: Shapefile
 
-[Shapefile](https://en.wikipedia.org/wiki/Shapefile) is a popular format used in GIS. Typically shapefiles consist of four (and sometimes more) files. These have the following extensions: .shp, .shx, .dbf, and .prj. You are likely to encounter shapefiles a lot, especially if working with 3rd party data (e.g. point location data from an NGO). Despite this, we (well, mainly James) strongly encourage you to adopt the [Geopackage](https://www.geopackage.org/) format. One huge benefit of the .gpkg file type is that all data is stored in a single file, as opposed to the 4+ found in shapefiles. Anyway, back to R...
+[Shapefile](https://en.wikipedia.org/wiki/Shapefile) is a popular format used in GIS. Typically shapefiles consist of four (and sometimes more) files. These have the following extensions: .shp, .shx, .dbf, and .prj. You are likely to encounter shapefiles a lot, especially if working with 3rd party data (e.g. point location data from an NGO).
 
 We will import a polygon layer of the world countries extracted from [Natural Earth Data](https://www.naturalearthdata.com/). This data should be available in your data folder:
 
@@ -53,6 +53,37 @@ head(countries@polygons)
 # the bounding box / extent of the data
 countries@bbox
 ```
+
+
+### Import vector data: Geopackage
+
+Despite the popularity of Shapefiles, we (well, mainly James) strongly encourage you to adopt the [Geopackage](https://www.geopackage.org/) format. One huge benefit of the .gpkg file type is that all data is stored in a single file, as opposed to the 4+ found in shapefiles.
+
+We will import a modified version of the "Populated places of the world" dataset, also from from [Natural Earth Data](https://www.naturalearthdata.com/):
+
+
+```{r}
+places <- readOGR("data/ne/ne_110m_populated_places_simple.gpkg")
+
+# view spatial attributes
+class(places)
+
+plot(places, main = "Populated places")  
+```
+
+As you can see, the class of this data is a SpatialPointsDataFrame. It has similar properties to the SpatialPolygonsDataFrame seen with the `countries` object, except, that each feature is represented by a single point, rather than group of points making a polygon. 
+
+The plot of points is not very informative on its own. Let's combine with the world map:
+
+```{r}
+plot(countries, col = "grey80", border = "grey80")
+plot(places, pch = 20, col = "darkblue", add = TRUE)
+```
+
+This plot demonstrates the key role that layering plays in GIS and spatial data visualisation. Some maps will contain many layers of information stacked on top of one another, each representing a different feature or set of features. 
+
+
+
 
 ## Coordinate Reference Systems (CRS)
 
@@ -99,9 +130,12 @@ countries_subset <- crop(countries, e)
 plot(countries_subset)
 ```
 
-#### Exercise:
+
+```{task}
 * Make a plot of South America
 * Tip: you can use QGIS or Google Earth to search for coordinates to use in your extent object. 
+```
+
 
 ### Geographic subset by data attributes
 
@@ -126,31 +160,6 @@ plot(south_america, col = "lightgreen", border = "darkgreen", lwd=3, main = "Sou
 extent(south_america)  # you can also get your extent
 ```
 
-## Import vector layer: point data
-
-We will import the "Populated places of the world" dataset, also from from [Natural Earth Data](https://www.naturalearthdata.com/):
-
-```{r}
-places <- readOGR(dsn = "data/ne/ne_110m_populated_places_simple", layer = "ne_110m_populated_places_simple")
-
-# view spatial attributes
-class(places)
-extent(places)
-crs(places)
-
-plot(places, main = "Populated places")  
-```
-
-As you can see, the class of this data is a SpatialPointsDataFrame. It has similar properties to the SpatialPolygonsDataFrame seen with the `countries` object, except, that each feature is represented by a single point, rather than group of points making a polygon. 
-
-The plot of points is not very informative on its own. Let's combine with the world map:
-
-```{r}
-plot(countries, col = "grey80", border = "grey80")
-plot(places, pch = 20, col = "darkblue", add = TRUE)
-```
-
-This plot demonstrates the key role that layering plays in GIS and spatial data visualisation. Some maps will contain many layers of information stacked on top of one another, each representing a different feature or set of features. 
 
 ## Spatial overlap
 
