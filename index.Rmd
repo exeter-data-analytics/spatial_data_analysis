@@ -36,6 +36,8 @@ We will also play with raster data with a further two examples:
 2. Working with real world data
 
 
+Accompanying slides can be downloaded from [here](slides.zip)
+
 ## Set up your working environment
 
 1. Create a new project within Rstudio. If you are unsure, instructions on how to do this can be found [here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects).
