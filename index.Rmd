@@ -46,7 +46,7 @@ We will also play with raster data with a further two examples:
 
 4. Now create the following folders within your project - `output` & `img`. This can be done from within R as follows:
 
-```{r create_folders}
+```{r create_folders, warning = FALSE}
 dir.create("output")
 dir.create("img")
 ```

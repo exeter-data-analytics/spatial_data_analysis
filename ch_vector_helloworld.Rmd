@@ -1,4 +1,4 @@
-# Hello, world!
+# Vector: Hello, world!
 
 This chapter will introduce you to some of the key concepts surrounding the use of vector spatial data in R. You will learn the basics of how to import and manipulate vector data.   
 

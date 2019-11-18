@@ -2,7 +2,7 @@
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Animal oceanographers
+# Vector: Animal oceanographers
 
 ## Import spatial data from .csv files
 
