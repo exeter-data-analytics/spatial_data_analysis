@@ -6,7 +6,7 @@
 
 2. Build the book in html using bookdown::gitbook button from 'build book'
 
-3. Add a copy of data.zip into docs folder
+3. Add a copy of data.zip and slides.zip into the docs/ folder
 
 4. Add the contents of "docs" folder to your master branch, split it into gh-pages and push to the repo:
 
