@@ -22,3 +22,11 @@ This should have deployed your work.
 git checkout master
 git reset --hard HEAD~1
 git branch -D gh-pages
+
+
+
+Issue found on like this:
+https://stackoverflow.com/questions/39414416/missing-files-in-html
+
+Solution:
+https://bookdown.org/yihui/blogdown/dep-path.html
