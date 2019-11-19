@@ -63,6 +63,7 @@ We will import a modified version of the "Populated places of the world" dataset
 
 
 ```{r}
+# import geopackage
 places <- readOGR("data/ne/ne_110m_populated_places_simple.gpkg")
 
 # view spatial attributes
