@@ -6,9 +6,11 @@
 
 2. Build the book in html using bookdown::gitbook button from 'build book'
 
-3. Add a copy of data.zip and slides.zip into the docs/ folder
+3. Replace paths from `_main_files` to `main_files`
 
-4. Add the contents of "docs" folder to your master branch, split it into gh-pages and push to the repo:
+4. Add a copy of data.zip and slides.zip into the docs/ folder
+
+5. Add the contents of "docs" folder to your master branch, split it into gh-pages and push to the repo:
 
 git add -f docs
 git commit -m "Added docs files to repo"
@@ -17,7 +19,7 @@ git push origin gh-pages --force
 
 This should have deployed your work.
 
-5. Finally, to tifdy up and make sure the repo is not too big, you can remove the gh-pages branch locally, and remove the final commit to master (it's a good idea to check with a git log before removing - you only want to remove the commit that added the "docs" folder, nothing else).
+6. Finally, to tifdy up and make sure the repo is not too big, you can remove the gh-pages branch locally, and remove the final commit to master (it's a good idea to check with a git log before removing - you only want to remove the commit that added the "docs" folder, nothing else).
 
 git checkout master
 git reset --hard HEAD~1
