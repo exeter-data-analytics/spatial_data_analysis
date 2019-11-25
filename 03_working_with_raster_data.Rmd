@@ -174,7 +174,7 @@ plot(pols, add=T)
 ### Elevation data
 
 ```{r, read shp file}
-cwl <- readOGR("data/england_ct_2001.shp")
+cwl <- readOGR("data/ukdata/england_ct_2001.shp")
 wgs84 = '+proj=longlat +datum=WGS84'
 cwl_WGS84 <- spTransform(cwl, CRS(wgs84))
 ```
