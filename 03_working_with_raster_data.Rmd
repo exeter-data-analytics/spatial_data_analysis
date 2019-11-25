@@ -289,6 +289,7 @@ leaflet() %>%
             title = "Cornwall Elevation")
 ```
 The ```leaflet``` package is highly versatile and can do a lot more. You can explore more [here](https://rstudio.github.io/leaflet/). 
+
 ## Save data
 There are a number of ways to save your data to files. First let's create an output folder if you don't already have one.
 
