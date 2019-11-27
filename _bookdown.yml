@@ -1,4 +1,0 @@
-rmd_files:
-    html: ['index.Rmd', 'ch_vector_helloworld.Rmd', 'ch_vector_oceanographers.Rmd', '03_working_with_raster_data.Rmd']
-    latex: ['index.Rmd', 'ch_vector_helloworld.Rmd', 'ch_vector_oceanographers.Rmd', '03_working_with_raster_data.Rmd', 'ch_appendix.Rmd']
-output_dir: "docs"
