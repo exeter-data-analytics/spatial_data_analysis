@@ -345,6 +345,25 @@ leaflet() %>%
 The `leaflet` package is highly versatile and can do a lot more. 
 You can explore more [here](https://rstudio.github.io/leaflet/). 
 
+
+### Visualize in 3D
+
+We can also make an interative 3D plot of a RasterLayer. You can modifiy several parameters like the color palette or the elevation scale relative to x and y.
+
+```{r message = FALSE, warning = FALSE}
+library(rgl)
+library(rasterVis)
+```
+
+```{r}
+plot3D(elev_100m_WGS84, zfac = 1, col=terrain.colors, rev=FALSE)  # plot 3d with rgl
+```
+
+```{r echo=FALSE}
+rglwidget()
+```
+
+
 ## Saving raster data
 
 There are a number of ways to save your data to files. First let's create an 
