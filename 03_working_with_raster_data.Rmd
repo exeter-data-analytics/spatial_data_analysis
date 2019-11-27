@@ -89,6 +89,10 @@ plotRGB(sRLogo, stretch = "hist")
 
 And changing the order of the bands - useful when RGB are not in the correct order:
 
+```{r, fig.cap="R Logo with different order of bands"}
+plotRGB(sRLogo, r = 3, g = 2, b = 1, stretch = "lin")
+```
+
 ### A random synthetic raster
 
 Sometimes it can be useful to generate a random synthetic dataset. This could be 
